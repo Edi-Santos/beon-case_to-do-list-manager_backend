@@ -1,0 +1,22 @@
+{
+  "name": "to-do_list_manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/api/server.js",
+    "dev": "nodemon ./src/api/server.js"
+  },
+  "keywords": [],
+  "author": "Edimar dos Santos Resende",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint-config-trybe-backend": "^1.0.4",
+    "nodemon": "^2.0.16"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongodb": "^4.7.0"
+  }
+}
