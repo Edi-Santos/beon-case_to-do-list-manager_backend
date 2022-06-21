@@ -35,8 +35,21 @@ const updateTask = async (req, res) => {
   }
 };
 
+const removeTask = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await Tasks.removeTask(id);
+
+    return res.status(204).end();
+  } catch (error) {
+    console.log(`Erro no Controller || ${error}`);
+  }
+};
+
 module.exports = {
   getAllTasks,
   createTask,
   updateTask,
+  removeTask,
 };

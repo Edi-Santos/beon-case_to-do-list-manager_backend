@@ -45,8 +45,18 @@ const updateTask = async (id, newTaskDatas) => {
   }
 };
 
+const removeTask = async (id) => {
+  try {
+    const db = await connection();
+    await db.collection(COLLECTION).deleteOne({ _id: new ObjectId(id) });
+  } catch (error) {
+    console.log(`Erro no Model || ${error}`);
+  }
+};
+
 module.exports = {
   getAllTasks,
   createTask,
   updateTask,
+  removeTask,
 };
