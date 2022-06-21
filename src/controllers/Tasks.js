@@ -22,7 +22,21 @@ const createTask = async (req, res) => {
   }
 };
 
+const updateTask = async (req, res) => {
+  const { id } = req.params;
+  const newTaskDatas = req.body;
+
+  try {
+    const taskToUpdate = await Tasks.updateTask(id, newTaskDatas);
+
+    return res.status(200).json({ taskUpdated: taskToUpdate });
+  } catch (error) {
+    console.log(`Erro no Controller || ${error}`);
+  }
+};
+
 module.exports = {
   getAllTasks,
   createTask,
+  updateTask,
 };

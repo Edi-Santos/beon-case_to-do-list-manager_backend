@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const connection = require('./connection');
 
 const COLLECTION = 'tasks';
@@ -27,7 +28,25 @@ const createTask = async (taskDatas) => {
   }
 };
 
+const updateTask = async (id, newTaskDatas) => {
+  try {
+    const db = await connection();
+    await db.collection(COLLECTION).updateOne(
+      { _id: new ObjectId(id) },
+      { $set: { ...newTaskDatas } },
+    );
+
+    return {
+      _id: id,
+      ...newTaskDatas,
+    };
+  } catch (error) {
+    console.log(`Erro no Model || ${error}`);
+  }
+};
+
 module.exports = {
   getAllTasks,
   createTask,
+  updateTask,
 };
