@@ -13,6 +13,21 @@ const getAllTasks = async () => {
   }
 };
 
+const createTask = async (taskDatas) => {
+  try {
+    const db = await connection();
+    const newTask = await db.collection(COLLECTION).insertOne(taskDatas);
+
+    return {
+      _id: newTask.insertedId,
+      ...taskDatas,
+    };
+  } catch (error) {
+    console.log(`Erro no Model || ${error}`);
+  }
+};
+
 module.exports = {
   getAllTasks,
+  createTask,
 };
