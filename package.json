@@ -12,6 +12,7 @@
   "license": "ISC",
   "devDependencies": {
     "eslint-config-trybe-backend": "^1.0.4",
+    "joi": "^17.6.0",
     "nodemon": "^2.0.16"
   },
   "dependencies": {
