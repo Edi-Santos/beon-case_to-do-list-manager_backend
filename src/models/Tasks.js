@@ -50,7 +50,13 @@ const updateTask = async (id, newTaskDatas) => {
 const removeTask = async (id) => {
   try {
     const db = await connection();
-    await db.collection(COLLECTION).deleteOne({ _id: new ObjectId(id) });
+    const taskToBeRemoved = await db.collection(COLLECTION).deleteOne({
+      _id: new ObjectId(id),
+    });
+
+    if (taskToBeRemoved.deletedCount === 0) return false;
+
+    return true;
   } catch (error) {
     console.log(`Erro no Model || ${error}`);
   }

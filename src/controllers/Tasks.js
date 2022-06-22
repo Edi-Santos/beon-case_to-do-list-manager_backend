@@ -51,7 +51,13 @@ const removeTask = async (req, res) => {
   const { id } = req.params;
 
   try {
-    await Tasks.removeTask(id);
+    const taskToBeRemoved = await Tasks.removeTask(id);
+
+    if (taskToBeRemoved.message) {
+      const { status, message } = taskToBeRemoved;
+
+      return res.status(status).json({ message });
+    }
 
     return res.status(204).end();
   } catch (error) {

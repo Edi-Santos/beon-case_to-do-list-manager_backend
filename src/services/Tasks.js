@@ -32,7 +32,19 @@ const updateTask = async (id, newTaskDatas) => {
   }
 };
 
-const removeTask = async (id) => Tasks.removeTask(id);
+const removeTask = async (id) => {
+  try {
+    const taskToBeRemoved = await Tasks.removeTask(id);
+
+    const validatingTask = fetchTaskValidation(taskToBeRemoved);
+
+    if (validatingTask !== true) return validatingTask;
+
+    return taskToBeRemoved;
+  } catch (error) {
+    console.log(`Erro no Service || ${error}`);
+  }
+};
 
 module.exports = {
   getAllTasks,
