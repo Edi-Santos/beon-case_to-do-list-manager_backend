@@ -16,6 +16,12 @@ const createTask = async (req, res) => {
   try {
     const newTask = await Tasks.createTask(taskDatas);
 
+    if (newTask.message) {
+      const { status, message } = newTask;
+
+      return res.status(status).json({ message });
+    }
+
     return res.status(201).json({ newTask });
   } catch (error) {
     console.log(`Erro no Controller || ${error}`);
