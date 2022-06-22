@@ -31,10 +31,12 @@ const createTask = async (taskDatas) => {
 const updateTask = async (id, newTaskDatas) => {
   try {
     const db = await connection();
-    await db.collection(COLLECTION).updateOne(
+    const taskToUpdate = await db.collection(COLLECTION).updateOne(
       { _id: new ObjectId(id) },
       { $set: { ...newTaskDatas } },
     );
+
+    if (taskToUpdate.matchedCount === 0) return false;
 
     return {
       _id: id,

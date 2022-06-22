@@ -35,6 +35,12 @@ const updateTask = async (req, res) => {
   try {
     const taskToUpdate = await Tasks.updateTask(id, newTaskDatas);
 
+    if (taskToUpdate.message) {
+      const { status, message } = taskToUpdate;
+
+      return res.status(status).json({ message });
+    }
+
     return res.status(200).json({ taskUpdated: taskToUpdate });
   } catch (error) {
     console.log(`Erro no Controller || ${error}`);
