@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./src/api/server.js",
     "dev": "nodemon ./src/api/server.js",
-    "test": "mocha ./tests/**/*$NAME*.test.js --exit"
+    "test": "mocha ./tests/**/*$NAME*.test.js --exit --timeout=6000"
   },
   "keywords": [],
   "author": "Edimar dos Santos Resende",
